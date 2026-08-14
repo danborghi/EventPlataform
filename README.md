@@ -1,7 +1,5 @@
 # Event Platform
 
-Plataforma de eventos e ingressos criada para o Desafio Elite Dev 2026 da Verzel.
-
 O projeto usa um monorepo TypeScript. O Next.js cuida da experiência web; o NestJS é a única fonte de verdade para autenticação, autorização, preço, estoque, pagamento e validação; PostgreSQL e Prisma mantêm o estado e as invariantes críticas.
 
 ## Estado atual
