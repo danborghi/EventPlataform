@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": [
+    "AUTH_LOGIN_RATE_LIMIT",
+    "AUTH_LOGIN_RATE_WINDOW_MS",
+    "CORS_ORIGIN",
+    "DATABASE_URL",
+    "JWT_EXPIRES_IN_SECONDS",
+    "JWT_SECRET",
+    "NEXT_PUBLIC_API_URL",
+    "NODE_ENV",
+    "PORT",
+    "TMDB_API_BASE_URL",
+    "TMDB_API_READ_TOKEN",
+    "TMDB_IMAGE_BASE_URL",
+    "TMDB_LANGUAGE",
+    "TMDB_REGION",
+    "TMDB_TIMEOUT_MS"
+  ],
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    }
+  }
+}

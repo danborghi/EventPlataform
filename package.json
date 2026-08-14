@@ -1,0 +1,34 @@
+{
+  "name": "event-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.16.0",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=11 <12"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint",
+    "smoke": "node scripts/smoke.mjs",
+    "test": "turbo run test",
+    "test:e2e:web": "pnpm --filter @event-platform/e2e test:e2e",
+    "typecheck": "turbo run typecheck",
+    "db:generate": "pnpm --filter @event-platform/api db:generate",
+    "db:migrate": "pnpm --filter @event-platform/api db:migrate",
+    "db:migrate:deploy": "pnpm --filter @event-platform/api db:migrate:deploy",
+    "db:seed": "pnpm --filter @event-platform/api db:seed"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0",
+    "prettier": "3.9.6",
+    "turbo": "2.10.9",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  }
+}

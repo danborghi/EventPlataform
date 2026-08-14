@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-paper: #f4f0e8;
+  --color-ink: #1d1d1b;
+  --color-surface: #fffdf8;
+  --color-accent: #c13a1b;
+  --color-line: #c8c1b5;
+  --color-muted: #625e57;
+  --color-success: #16794a;
+  --color-success-soft: #e5f2e9;
+  --color-warning: #b76b00;
+  --color-warning-soft: #fff2d6;
+  --color-error: #b42318;
+  --color-error-soft: #fbe9e7;
+  --font-mono: 'Courier New', Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f4f0e8;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1d1d1b;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #c13a1b;
+  color: #fffdf8;
+}
+
+:focus-visible {
+  outline: 3px solid #c13a1b;
+  outline-offset: 3px;
+}
+
+button:disabled,
+fieldset:disabled {
+  cursor: not-allowed;
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-black tracking-[0.22em] text-accent uppercase;
+  }
+
+  .ticket-number {
+    @apply inline-flex w-fit border border-ink px-3 py-1 font-mono text-[0.65rem] font-bold tracking-wider uppercase;
+  }
+
+  .button-primary,
+  .button-secondary,
+  .button-quiet {
+    @apply inline-flex min-h-11 items-center justify-center px-5 py-3 text-xs font-black tracking-[0.13em] uppercase transition-colors;
+  }
+
+  .button-primary {
+    @apply border border-ink bg-ink text-surface hover:border-accent hover:bg-accent disabled:border-line disabled:bg-line disabled:text-muted;
+  }
+
+  .button-secondary {
+    @apply border border-ink bg-transparent text-ink hover:bg-paper disabled:border-line disabled:text-muted;
+  }
+
+  .button-quiet {
+    @apply min-h-9 border border-line px-3 py-2 text-muted hover:border-ink hover:text-ink;
+  }
+
+  .field-control {
+    @apply min-h-12 w-full border border-line bg-surface px-3 py-2.5 text-sm text-ink outline-none placeholder:text-muted/65 focus:border-ink disabled:bg-paper disabled:text-muted;
+  }
+
+  .event-list-item {
+    @apply w-full border border-line bg-surface p-4 text-ink transition-colors hover:border-ink hover:bg-paper;
+  }
+
+  .event-list-item-active {
+    @apply border-ink bg-paper;
+    box-shadow: inset 4px 0 0 #c13a1b;
+  }
+
+  .movie-card {
+    @apply border border-transparent p-2 transition-colors hover:border-line hover:bg-surface;
+  }
+
+  .movie-card-selected {
+    @apply border-ink bg-surface;
+    box-shadow: 5px 5px 0 #c13a1b;
+  }
+
+  .status-stamp {
+    @apply inline-flex w-fit shrink-0 items-center border px-2 py-1 font-mono text-[0.61rem] font-bold tracking-wider uppercase;
+  }
+
+  .status-draft {
+    @apply border-warning bg-warning-soft text-warning;
+  }
+
+  .status-published {
+    @apply border-success bg-success-soft text-success;
+  }
+
+  .status-canceled {
+    @apply border-error bg-error-soft text-error;
+  }
+
+  .availability-open,
+  .availability-sold-out {
+    @apply inline-flex w-fit items-center border px-2 py-1 font-mono text-[0.62rem] font-bold tracking-wider uppercase;
+  }
+
+  .availability-open {
+    @apply border-success bg-success-soft text-success;
+  }
+
+  .availability-sold-out {
+    @apply border-error bg-error-soft text-error;
+  }
+}
+
+.ticket-cut {
+  position: relative;
+}
+
+.ticket-cut::before,
+.ticket-cut::after {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  content: '';
+  background: #fffdf8;
+  border: 1px solid #1d1d1b;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket-cut::before {
+  left: -9px;
+}
+
+.ticket-cut::after {
+  right: -9px;
+}
+
+.loading-mark {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  border: 3px solid #c8c1b5;
+  border-top-color: #c13a1b;
+  border-radius: 50%;
+  animation: turn 0.8s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

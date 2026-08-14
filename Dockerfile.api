@@ -1,0 +1,21 @@
+FROM node:24-alpine
+
+ENV PNPM_HOME=/pnpm
+ENV PATH=$PNPM_HOME:$PATH
+RUN corepack enable
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
+COPY apps/api/package.json apps/api/package.json
+COPY packages/contracts/package.json packages/contracts/package.json
+RUN pnpm install --frozen-lockfile
+
+COPY apps/api apps/api
+COPY packages/contracts packages/contracts
+RUN pnpm --filter @event-platform/api build
+
+ENV NODE_ENV=production
+EXPOSE 3333
+
+CMD ["pnpm", "--filter", "@event-platform/api", "start:prod"]
